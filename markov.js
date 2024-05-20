@@ -25,8 +25,8 @@ class MarkovMachine {
       if (i + 1 < this.words.length) {
         this.chains[this.words[i]].push(this.words[i+1]);
       }
-      if (i === this.words.length) {
-        this.chains[this.words[i].push(null)]
+      if (i + 1 === this.words.length) {
+        this.chains[this.words[i]].push(null)
       }
     }
   }
@@ -46,13 +46,15 @@ class MarkovMachine {
   /** return random text from chains */
 
   makeText(numWords = 100) {
-    text = []
+    const text = []
     // pick the first word at random from our list of words
     let currWord = this.words[Math.floor(Math.random() * this.words.length)]
     
     while (text.length < numWords) {
       text.push(currWord);
-      currWord = nextWord(currWord);
+      currWord = this.nextWord(currWord);
+      if (currWord === null || currWord === undefined) break;
     }
+    return text.join(' ');
   }
 }
