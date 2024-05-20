@@ -58,3 +58,6 @@ class MarkovMachine {
     return text.join(' ');
   }
 }
+
+
+module.exports = {MarkovMachine};
